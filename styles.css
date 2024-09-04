@@ -1,0 +1,150 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-photo img {
+    width: auto;
+    height: 275px;
+    border-radius: 50%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    width: 65%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 40px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile h1 {
+    font-size: 2.4rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.profile p {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+main h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-top: 80px;
+}
+
+main h2:first-of-type {
+    margin-top: 40px;
+}
+
+.details h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.details p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.date {
+    font-size: 1rem;
+    font-style: italic;
+    color: #777;
+    margin-top: 5px;
+    display: block;
+}
+
+.education-item, .experience-item, .project-item, .activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.details {
+    flex: 1;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+ul {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+ul li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.awards-list li {
+    position: relative;
+    padding-right: 150px;
+    margin-bottom: 10px;
+}
+
+.awards-list .date {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+footer {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 60px;
+    font-size: 0.9rem;
+    color: #777;
+}
