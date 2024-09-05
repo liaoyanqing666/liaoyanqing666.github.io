@@ -16,16 +16,35 @@
                 <h1>Siyuan Li (黎思源)</h1>
                 <p>Artificial Intelligence Student</p>
                 <p>Tel: (+86) 13815397394</p>
-                <p>Email: <a href="mailto:1793706453@qq.com">lyq@shu.edu.cn</a> & <a href="mailto:lyq@shu.edu.cn">lyq@shu.edu.cn</a></p>
+                <p>Email: <a href="mailto:1793706453@qq.com">1793706453@qq.com</a> & <a href="mailto:lyq@shu.edu.cn">lyq@shu.edu.cn</a></p>
                 <p>WeChat: abcdefghi314159</p>
                 <p><a href="https://github.com/liaoyanqing666" target="_blank">GitHub</a></p>
                 <p><a href="resume.pdf" target="_blank">PDF Resume</a></p>
             </div>
-            <div class="profile-photo">
-                <img src="images/photo.jpg" alt="Siyuan Li Photo">
+            <div class="carousel-container">
+                <img src="images/photo1.jpg" class="carousel-image active" alt="Siyuan Li Photo 1">
+                <img src="images/photo2.jpg" class="carousel-image" alt="Siyuan Li Photo 2">
+                <img src="images/photo3.jpg" class="carousel-image" alt="Siyuan Li Photo 3">
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
             </div>
         </div>
     </header>
+
+    <script>
+        let currentSlide = 0;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.carousel-image');
+            slides[currentSlide].classList.remove('active');
+
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+
+            slides[currentSlide].classList.add('active');
+        }
+    </script>
     
     <section class="intro">
         <div class="container">

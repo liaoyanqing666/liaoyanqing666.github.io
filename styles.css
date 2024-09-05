@@ -1,4 +1,3 @@
-/* Reset default browser styles */
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +8,55 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.carousel-container {
+    width: 250px;
+    height: 350px;
+    position: relative;
+    margin: 0 auto;
+    background-color: white;
+    overflow: hidden;
+}
+
+.carousel-image {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: white;
+}
+
+.carousel-image.active {
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: none;
+    border: none;
+    user-select: none;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 40%;
 }
 
 .profile-info {
