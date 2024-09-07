@@ -4,10 +4,54 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+}
+
+.container {
+    width: 65%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 40px;
+}
+
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-photo img {
+    width: auto;
+    height: 225px;
+    border-radius: 50%;
+}
+
+.profile h1 {
+    font-size: 2.4rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.profile p {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
 }
 
 .carousel-container {
@@ -59,53 +103,6 @@
     border-radius: 40%;
 }
 
-.profile-info {
-    flex: 1;
-}
-
-.profile-photo img {
-    width: auto;
-    height: 275px;
-    border-radius: 50%;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    background-color: #f9f9f9;
-    color: #333;
-}
-
-.container {
-    width: 65%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-header {
-    background-color: #fff;
-    padding: 20px 0;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 40px;
-}
-
-.profile {
-    text-align: center;
-}
-
-.profile h1 {
-    font-size: 2.4rem;
-    font-weight: 400;
-    margin-bottom: 10px;
-}
-
-.profile p {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
 main h2 {
     font-size: 1.8rem;
     margin-bottom: 30px;
@@ -129,10 +126,9 @@ main h2:first-of-type {
 }
 
 .date {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-style: italic;
     color: #777;
-    margin-top: 5px;
     display: block;
 }
 
@@ -142,6 +138,11 @@ main h2:first-of-type {
     align-items: flex-start;
     margin-bottom: 30px;
     gap: 20px;
+}
+
+.education-item .date, .experience-item .date, .project-item .date, .activity-item .date{
+    font-size: 0.9rem;
+    margin-top: 3px;
 }
 
 .details {
@@ -171,18 +172,19 @@ ul li::before {
     position: absolute;
     left: 0;
     top: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #555;
 }
 
 .awards-list li {
     position: relative;
-    padding-right: 150px;
+    padding-right: 120px;
     margin-bottom: 10px;
 }
 
 .awards-list .date {
     position: absolute;
+    font-size: 0.8rem;
     right: 0;
     top: 0;
 }
@@ -195,4 +197,71 @@ footer {
     margin-top: 60px;
     font-size: 0.9rem;
     color: #777;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    header {
+        padding: 10px 0;
+        margin-bottom: 20px;
+    }
+
+    .profile-info p {
+        font-size: 1rem;
+    }
+
+    .profile h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    /* 照片和基本信息居中 */
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .carousel-container {
+        width: 50%;
+        height: auto;
+        margin-top: 20px;
+        position: relative; /* 确保切换按钮依然定位在图片两侧 */
+    }
+
+    .carousel-image {
+        height: auto;
+    }
+
+    .prev, .next {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    main h2 {
+        font-size: 1.5rem;
+    }
+
+    .details h3 {
+        font-size: 1.2rem;
+    }
+
+    .details p {
+        font-size: 1rem;
+    }
+
+    .education-item, .experience-item, .project-item, .activity-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    body {
+        font-size: 14px;
+        line-height: 1.6;
+    }
 }
