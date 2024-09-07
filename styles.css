@@ -55,8 +55,10 @@ header {
 }
 
 .carousel-container {
-    width: 250px;
-    height: 350px;
+    width: 20%;
+    max-width: 300px;
+    height: 20%;
+    max-height: 400px;
     position: relative;
     margin: 0 auto;
     background-color: white;
@@ -199,8 +201,7 @@ footer {
     color: #777;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .container {
         width: 90%;
         padding: 10px;
@@ -220,7 +221,6 @@ footer {
         text-align: center;
     }
 
-    /* 照片和基本信息居中 */
     .header-container {
         flex-direction: column;
         align-items: center;
@@ -231,7 +231,7 @@ footer {
         width: 50%;
         height: auto;
         margin-top: 20px;
-        position: relative; /* 确保切换按钮依然定位在图片两侧 */
+        position: relative;
     }
 
     .carousel-image {
