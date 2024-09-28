@@ -20,7 +20,7 @@ You can fork this repository to create your own website, or clone it to your loc
 
 ### Modify the Content
 
-Once you've forked or cloned the repository, you'll see several files, including `index.html`, `styles.css`, and other important files. These are the files you'll need to edit to customize your website.
+Once you've forked the repository, you'll see several files, including `index.html`, `styles.css`, and other important files. These are the files you'll need to edit to customize your website.
 
 - **index.html**: This is the main content file of the website. When someone opens your website, this is the content that will be displayed. You can edit the text and images here to personalize your website.
 - **styles.css**: This file controls the website's appearance and layout (e.g., background colors, font sizes, spacing). If you're satisfied with the default layout, you can skip modifying this file.
@@ -57,7 +57,7 @@ Once you've forked or cloned the repository, you'll see several files, including
 
 ### 修改具体内容
 
-fork 或克隆仓库后，您会看到多个文件，包括 `index.html`、`styles.css` 以及其他关键文件。这些是您需要编辑以自定义网站内容的文件。
+fork 仓库后，您会看到多个文件，包括 `index.html`、`styles.css` 以及其他关键文件。这些是您需要编辑以自定义网站内容的文件。
 
 - **index.html**: 这是网站主页的内容文件，打开网址后显示的就是该文件中的内容。您可以在这里自定义网站的文字和图片。
 - **styles.css**: 该文件控制网站的样式与外观（例如背景颜色、文字大小、排版等）。如果您对默认样式没有太大需求，可以跳过修改。
