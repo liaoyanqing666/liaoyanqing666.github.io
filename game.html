@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Ball Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+
+        #title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            background-color: #ffffff;
+            border: 2px solid #333;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .ball {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .ball:hover {
+            transform: scale(1.2);
+        }
+
+        #controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 1000px;
+        }
+
+        #startButton, #stopButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #stopButton {
+            background-color: #dc3545;
+        }
+
+        #startButton:hover {
+            background-color: #218838;
+        }
+
+        #stopButton:hover {
+            background-color: #c82333;
+        }
+
+        #sizeInput, #colorInput {
+            margin-left: 10px;
+            padding: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            width: 1000px;
+            font-size: 20px;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #stats div {
+            text-align: center;
+        }
+
+        #highScore {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        #footer {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #555;
+            text-align: center;
+        }
+
+        #footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        #footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="title">Click the Ball Game</div>
+
+    <div id="controls">
+        <div>
+            <label for="sizeInput">Ball Size (10-100px):</label>
+            <input type="number" id="sizeInput" min="10" max="100" value="30">
+        </div>
+        
+        <div>
+            <label for="colorInput">Ball Color:</label>
+            <input type="color" id="colorInput" value="#ff6347">
+        </div>
+
+        <button id="startButton">Start Game</button>
+        <button id="stopButton" style="display: none;">Stop Game</button>
+    </div>
+
+    <div id="stats">
+        <div>Time Left: <span id="timer">30</span> seconds</div>
+        <div>Score: <span id="score">0</span></div>
+        <div>Accuracy: <span id="accuracy">0</span>%</div>
+    </div>
+
+    <div id="gameContainer"></div>
+
+    <div id="highScore">High Score: <span id="highScoreValue">0</span></div>
+
+    <div id="footer">
+        Game repository: <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank">https://github.com/liaoyanqing666/liaoyanqing666.github.io</a><br>
+        Game author: <a href="https://siyuanli.tech" target="_blank">Siyuan Li</a>
+    </div>
+
+    <script>
+        const gameContainer = document.getElementById("gameContainer");
+        const scoreDisplay = document.getElementById("score");
+        const timerDisplay = document.getElementById("timer");
+        const accuracyDisplay = document.getElementById("accuracy");
+        const highScoreDisplay = document.getElementById("highScoreValue");
+        const startButton = document.getElementById("startButton");
+        const stopButton = document.getElementById("stopButton");
+        const sizeInput = document.getElementById("sizeInput");
+        const colorInput = document.getElementById("colorInput");
+
+        let score = 0;
+        let totalClicks = 0;
+        let timeLeft = 30;
+        let isGameStarted = false;
+        let gameInterval;
+        let timerInterval;
+        let ballSize = 30;
+        let ballColor = "#ff6347";
+        let highScore = 0;
+
+        function createBall() {
+            const ball = document.createElement("div");
+            ball.classList.add("ball");
+
+            const maxX = gameContainer.clientWidth - ballSize;
+            const maxY = gameContainer.clientHeight - ballSize;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            ball.style.width = ballSize + "px";
+            ball.style.height = ballSize + "px";
+            ball.style.backgroundColor = ballColor;
+            ball.style.left = randomX + "px";
+            ball.style.top = randomY + "px";
+
+            ball.addEventListener("click", () => {
+                ball.remove();
+                score++;
+                totalClicks++;
+                updateScore();
+                updateAccuracy();
+                createBall();
+            });
+
+            gameContainer.appendChild(ball);
+        }
+
+        function updateScore() {
+            scoreDisplay.textContent = score;
+        }
+
+        function updateAccuracy() {
+            let accuracy = totalClicks === 0 ? 0 : Math.floor((score / totalClicks) * 100);
+            accuracyDisplay.textContent = accuracy;
+        }
+
+        function updateTimer() {
+            timeLeft--;
+            timerDisplay.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                clearInterval(gameInterval);
+                endGame();
+            }
+        }
+
+        startButton.addEventListener("click", () => {
+            if (!isGameStarted) {
+                isGameStarted = true;
+                score = 0;
+                totalClicks = 0;
+                timeLeft = 30;
+                ballSize = parseInt(sizeInput.value);
+                ballColor = colorInput.value;
+                updateScore();
+                updateAccuracy();
+                timerDisplay.textContent = timeLeft;
+                startButton.style.display = "none";
+                stopButton.style.display = "block";
+
+                createBall();
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+        });
+
+        stopButton.addEventListener("click", () => {
+            if (isGameStarted) {
+                endGame();
+            }
+        });
+
+        gameContainer.addEventListener("click", (event) => {
+            if (isGameStarted && !event.target.classList.contains("ball")) {
+                totalClicks++;
+                updateAccuracy();
+            }
+        });
+
+        function endGame() {
+            gameContainer.innerHTML = "";
+            clearInterval(timerInterval);
+            clearInterval(gameInterval);
+            isGameStarted = false;
+            startButton.style.display = "block";
+            stopButton.style.display = "none";
+            if (score > highScore) {
+                highScore = score;
+                highScoreDisplay.textContent = highScore;
+                alert("New High Score! Your score is: " + score);
+            } else {
+                alert("Game over! Your score is: " + score);
+            }
+        }
+    </script>
+
+</body>
+</html>
