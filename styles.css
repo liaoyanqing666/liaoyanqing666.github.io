@@ -21,14 +21,14 @@ body {
     line-height: 1.7;
     background-color: var(--background-color);
     color: var(--text-color);
-    font-size: 14px;
+    font-size: 13px;
 }
 
 header {
     background-color: var(--header-background);
     padding: 15px 0;
     border-bottom: 1px solid #ddd;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 
 .container {
@@ -44,33 +44,37 @@ header {
     align-items: center;
 }
 
+section {
+    margin-bottom: 70px;
+}
+
 .profile-info {
     flex: 1;
 }
 
 .profile-info h1 {
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-family: 'Merriweather', serif;
     color: var(--primary-color);
 }
 
 .profile-info .chinese-name {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--secondary-color);
 }
 
 .profile-info .subtitle {
-    font-size: 1rem;
-    margin-bottom: 12px;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
     color: var(--text-color);
 }
 
 .profile-info p {
-    font-size: 0.9rem;
-    margin-bottom: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
 }
 
 .profile-info .icon {
@@ -88,12 +92,12 @@ header {
 }
 
 .links {
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .links a {
-    margin-right: 8px;
-    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-bottom: 7px;
 }
 
 .button {
@@ -103,8 +107,8 @@ header {
     color: #fff;
     border-radius: 5px;
     text-decoration: none;
-    margin-top: 5px;
-    font-size: 0.9rem;
+    margin-top: 7px;
+    font-size: 0.85rem;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -139,7 +143,6 @@ header {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: auto;
     padding: 6px;
     font-size: 16px;
     font-weight: bold;
@@ -150,12 +153,12 @@ header {
     transition: background 0.3s;
 }
 
-.next {
-    right: 8px;
-}
-
 .prev {
     left: 8px;
+}
+
+.next {
+    right: 8px;
 }
 
 .prev:hover,
@@ -167,13 +170,13 @@ header {
 .intro {
     background-color: #eef3f6;
     color: var(--text-color);
-    padding: 20px 0;
-    margin-bottom: 30px;
+    padding: 25px 0;
+    margin-bottom: 40px;
     border-radius: 5px;
 }
 
 .intro p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .intro a {
@@ -185,31 +188,31 @@ header {
 }
 
 main h2 {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
+    font-size: 1.4rem;
+    margin-top: 70px;
+    margin-bottom: 30px;
     border-bottom: 1px solid #ccc;
-    padding-bottom: 8px;
-    margin-top: 60px;
+    padding-bottom: 10px;
     color: var(--primary-color);
 }
 
 main h2:first-of-type {
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .details h3 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-color);
 }
 
 .details p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #555;
 }
 
 .date {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-style: italic;
     color: #777;
     display: block;
@@ -219,16 +222,16 @@ main h2:first-of-type {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 15px;
+    gap: 20px;
 }
 
 .courses {
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 .courses p {
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
 .experience-item,
@@ -237,10 +240,10 @@ main h2:first-of-type {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 25px;
-    gap: 15px;
+    margin-bottom: 35px;
+    gap: 20px;
     background-color: #fff;
-    padding: 15px;
+    padding: 20px;
     border-left: 4px solid var(--primary-color);
     border-radius: 5px;
 }
@@ -248,8 +251,8 @@ main h2:first-of-type {
 .experience-item .date,
 .project-item .date,
 .activity-item .date {
-    font-size: 0.8rem;
-    margin-top: 3px;
+    font-size: 0.75rem;
+    margin-top: 5px;
 }
 
 .details {
@@ -274,37 +277,37 @@ main h2:first-of-type {
 .skills-list li {
     position: relative;
     padding-right: 120px;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
 }
 
 .awards-list .date {
     position: absolute;
     right: 0;
     top: 0;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #777;
 }
 
 ul {
     list-style-type: disc;
-    margin-top: 8px;
-    padding-left: 18px;
+    margin-top: 10px;
+    padding-left: 20px;
 }
 
 ul li {
-    margin-bottom: 8px;
-    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
     color: var(--text-color);
 }
 
 footer {
     background-color: var(--footer-background);
     text-align: center;
-    padding: 15px 0;
+    padding: 20px 0;
     border-top: 1px solid #ddd;
-    margin-top: 50px;
-    font-size: 0.8rem;
+    margin-top: 60px;
+    font-size: 0.75rem;
     color: #777;
 }
 
@@ -318,7 +321,7 @@ footer a:hover {
 }
 
 footer p {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 
 @media (max-width: 1080px) {
@@ -328,16 +331,16 @@ footer p {
     }
 
     header {
-        padding: 8px 0;
-        margin-bottom: 20px;
+        padding: 10px 0;
+        margin-bottom: 25px;
     }
 
     .profile-info p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .profile-info h1 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         text-align: center;
     }
 
@@ -365,15 +368,15 @@ footer p {
     }
 
     main h2 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .details h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .details p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .education-item,
@@ -381,11 +384,11 @@ footer p {
     .project-item,
     .activity-item {
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
     }
 
     body {
-        font-size: 13px;
+        font-size: 12px;
         line-height: 1.6;
     }
 }
