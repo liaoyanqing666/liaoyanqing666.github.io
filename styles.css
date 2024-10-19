@@ -4,13 +4,31 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #5b8db8;
+    --secondary-color: #a1c4d0;
+    --text-color: #333;
+    --background-color: #f9f9f9;
+    --header-background: #fff;
+    --footer-background: #fff;
+    --link-color: #5b8db8;
+    --link-hover-color: #3c6e91;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     line-height: 1.7;
-    background-color: #f9f9f9;
-    color: #333;
-    font-size: 16px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+header {
+    background-color: var(--header-background);
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
 }
 
 .container {
@@ -18,13 +36,6 @@ body {
     max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
-}
-
-header {
-    background-color: #fff;
-    padding: 20px 0;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 40px;
 }
 
 .header-container {
@@ -37,91 +48,163 @@ header {
     flex: 1;
 }
 
-.profile-photo img {
-    width: auto;
-    height: 225px;
-    border-radius: 50%;
+.profile-info h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-family: 'Merriweather', serif;
+    color: var(--primary-color);
 }
 
-.profile h1 {
-    font-size: 2.4rem;
+.profile-info .chinese-name {
     font-weight: 400;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
 }
 
-.profile p {
-    font-size: 1.1rem;
+.profile-info .subtitle {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.profile-info p {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.profile-info .icon {
+    margin-right: 5px;
+}
+
+.profile-info a:not(.button) {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.profile-info a:not(.button):hover {
+    color: var(--link-hover-color);
+}
+
+.links {
+    margin-top: 10px;
+}
+
+.links a {
+    margin-right: 8px;
     margin-bottom: 5px;
+}
+
+.button {
+    display: inline-block;
+    padding: 6px 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--link-hover-color);
+    color: #fff;
 }
 
 .carousel-container {
     width: 20%;
-    height: 20%;
     position: relative;
     margin: 0 auto;
-    background-color: white;
     overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .carousel-image {
     display: none;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background-color: white;
+    height: auto;
+    object-fit: cover;
 }
 
 .carousel-image.active {
     display: block;
 }
 
-.prev, .next {
+.prev,
+.next {
     cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: auto;
-    padding: 10px;
-    font-size: 24px;
+    padding: 6px;
+    font-size: 16px;
     font-weight: bold;
-    color: white;
-    background: none;
+    color: var(--text-color);
     border: none;
     user-select: none;
+    border-radius: 50%;
+    transition: background 0.3s;
 }
 
 .next {
-    right: 10px;
+    right: 8px;
 }
 
 .prev {
-    left: 10px;
+    left: 8px;
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 40%;
+.prev:hover,
+.next:hover {
+    background-color: var(--link-hover-color);
+    color: #fff;
+}
+
+.intro {
+    background-color: #eef3f6;
+    color: var(--text-color);
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.intro p {
+    font-size: 0.95rem;
+}
+
+.intro a {
+    color: var(--link-color);
+}
+
+.intro a:hover {
+    color: var(--link-hover-color);
 }
 
 main h2 {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin-top: 80px;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    margin-top: 60px;
+    color: var(--primary-color);
 }
 
 main h2:first-of-type {
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .details h3 {
-    font-size: 1.4rem;
-    font-weight: 400;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
 }
 
 .details p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #555;
 }
 
@@ -132,33 +215,41 @@ main h2:first-of-type {
     display: block;
 }
 
-.experience-item, .project-item, .activity-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 30px;
-    gap: 20px;
-}
-
-.experience-item .date, .project-item .date, .activity-item .date{
-    font-size: 0.9rem;
-    margin-top: 3px;
-}
-
 .education-item .education-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 20px;
+    gap: 15px;
 }
 
 .courses {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .courses p {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.experience-item,
+.project-item,
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    gap: 15px;
+    background-color: #fff;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+.experience-item .date,
+.project-item .date,
+.activity-item .date {
+    font-size: 0.8rem;
+    margin-top: 3px;
 }
 
 .details {
@@ -172,47 +263,62 @@ main h2:first-of-type {
     justify-content: flex-start;
 }
 
-ul {
+.awards-list,
+.skills-list {
     list-style-type: none;
-    margin-top: 10px;
+    margin: 0;
+    padding: 0;
 }
 
-ul li {
-    padding-left: 20px;
-    position: relative;
-    margin-bottom: 10px;
-}
-
-ul li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 1rem;
-    color: #555;
-}
-
-.awards-list li {
+.awards-list li,
+.skills-list li {
     position: relative;
     padding-right: 120px;
     margin-bottom: 10px;
+    font-size: 0.95rem;
 }
 
 .awards-list .date {
     position: absolute;
-    font-size: 0.8rem;
     right: 0;
     top: 0;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+ul {
+    list-style-type: disc;
+    margin-top: 8px;
+    padding-left: 18px;
+}
+
+ul li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: var(--text-color);
 }
 
 footer {
-    background-color: #fff;
+    background-color: var(--footer-background);
     text-align: center;
-    padding: 20px 0;
+    padding: 15px 0;
     border-top: 1px solid #ddd;
-    margin-top: 60px;
-    font-size: 0.9rem;
+    margin-top: 50px;
+    font-size: 0.8rem;
     color: #777;
+}
+
+footer a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--link-hover-color);
+}
+
+footer p {
+    margin-bottom: 5px;
 }
 
 @media (max-width: 1080px) {
@@ -222,16 +328,16 @@ footer {
     }
 
     header {
-        padding: 10px 0;
+        padding: 8px 0;
         margin-bottom: 20px;
     }
 
     .profile-info p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
-    .profile h1 {
-        font-size: 1.8rem;
+    .profile-info h1 {
+        font-size: 1.6rem;
         text-align: center;
     }
 
@@ -242,9 +348,9 @@ footer {
     }
 
     .carousel-container {
-        width: 50%;
+        width: 30%;
         height: auto;
-        margin-top: 20px;
+        margin-top: 15px;
         position: relative;
     }
 
@@ -252,30 +358,34 @@ footer {
         height: auto;
     }
 
-    .prev, .next {
+    .prev,
+    .next {
         top: 50%;
         transform: translateY(-50%);
     }
 
     main h2 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .details h3 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .details p {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
-    .education-item, .experience-item, .project-item, .activity-item {
+    .education-item,
+    .experience-item,
+    .project-item,
+    .activity-item {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
 
     body {
-        font-size: 14px;
+        font-size: 13px;
         line-height: 1.6;
     }
 }
