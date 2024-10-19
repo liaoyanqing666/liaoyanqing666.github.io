@@ -132,7 +132,7 @@ main h2:first-of-type {
     display: block;
 }
 
-.education-item, .experience-item, .project-item, .activity-item {
+.experience-item, .project-item, .activity-item {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -140,9 +140,25 @@ main h2:first-of-type {
     gap: 20px;
 }
 
-.education-item .date, .experience-item .date, .project-item .date, .activity-item .date{
+.experience-item .date, .project-item .date, .activity-item .date{
     font-size: 0.9rem;
     margin-top: 3px;
+}
+
+.education-item .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.courses {
+    margin-top: 10px;
+}
+
+.courses p {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .details {
