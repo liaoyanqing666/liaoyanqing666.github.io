@@ -47,6 +47,8 @@ Once you've forked the repository, you'll see several files, including `index.ht
 
 ## 如何从零开始创建自己的网站 (Chinese)
 
+如果是纯小白，可以通过[这个网址](https://blog.csdn.net/m0_61718615/article/details/142624599)访问带图版，并且步骤描写更为详细。
+
 ### Fork 这个仓库
 
 您可以通过 fork 本仓库来创建自己的网站，也可以将其克隆到本地机器进行修改。
