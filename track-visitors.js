@@ -10,20 +10,34 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-fetch('https://ipinfo.io/json?token=a2532467fe1742')
+fetch('https://ipapi.co/json/')
     .then(response => response.json())
     .then(data => {
-        const ip = data.ip;
-        const city = data.city;
-        const region = data.region;
-        const country = data.country;
+        const ip = data.ip || '';
+        const city = data.city || '';
+        const region = data.region || '';
+        const country = data.country_name || '';
+
+        const now = new Date();
+        const utcTimestamp = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const beijingOffset = 8 * 60 * 60000;
+        const beijingTime = new Date(utcTimestamp + beijingOffset);
+
+        const year = beijingTime.getFullYear();
+        const month = String(beijingTime.getMonth() + 1).padStart(2, '0');
+        const day = String(beijingTime.getDate()).padStart(2, '0');
+        const hours = String(beijingTime.getHours()).padStart(2, '0');
+        const minutes = String(beijingTime.getMinutes()).padStart(2, '0');
+        const seconds = String(beijingTime.getSeconds()).padStart(2, '0');
+
+        const timestamp = `CST${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
         const log = {
             ip: ip,
             city: city,
             region: region,
             country: country,
-            timestamp: new Date().toISOString()
+            timestamp: timestamp
         };
 
         db.collection("visitor_logs").add(log)
