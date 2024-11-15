@@ -28,12 +28,14 @@ Once you've forked the repository, you'll see several files, including `index.ht
 - **game.html**: This is a small Easter egg game I included. You can choose to keep it or remove it.
 - **LICENSE**: This file contains the open-source license for the website. You don't need to modify it, but you can replace it with a more permissive MIT license if desired.
 - **CNAME**: This file is used to link a custom domain. **Be sure to delete this file if you're not using a custom domain**. To delete it, open the file, click the three dots in the top-right corner, and select **Delete file**.
+- - **track-visitors.js**: This file is used to record who visited the site and is currently sent to the project author's database, be sure to **delete this file** first
 
 ### Edit the Content
 
 1. After cloning the repository locally, it's recommended to use **Visual Studio Code (VSCode)** for editing.
 2. Install the **Live Server** extension for VSCode to preview your changes in real-time.
 3. Once you finish editing the `index.html` and other files, commit and push the changes back to your GitHub repository.
+4. Remember to delete the entire `track-visitors.js` file, otherwise your website visitor record will be received by me.
 
 ### Deploy Your Website
 
@@ -67,12 +69,14 @@ fork 仓库后，您会看到多个文件，包括 `index.html`、`styles.css` �
 - **game.html**: 这是我添加的一个小彩蛋游戏，您可以选择保留或删除。
 - **LICENSE**: 包含网站的开源许可条款，无需更改，也可以替换为更加开放的 MIT 协议。
 - **CNAME**: 这个文件用于关联自定义域名，**如果不需要自定义域名，请务必删除**。操作步骤为：打开该文件，点击页面右上角的“三个点”图标，选择 **Delete file**。
+- **track-visitors.js**: 这个文件用于记录谁访问了这个网站，目前是发送到此项目作者的数据库，一定要首先**删除这个文件**
 
 ### 编辑内容
 
 1. 克隆仓库到本地后，建议使用 **Visual Studio Code (VSCode)** 进行编辑。
 2. 您可以安装 VSCode 的 **Live Server 插件**，实时预览您编辑后的页面效果。
 3. 修改完 `index.html` 和其他文件后，将更改提交并推送到您的 GitHub 仓库。
+4. 切记**整个删除**`track-visitors.js`文件，否则你的网站访客记录会被我全部收到。
 
 ### 部署网站
 

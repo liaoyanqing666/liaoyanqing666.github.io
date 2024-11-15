@@ -29,8 +29,11 @@ fetch('https://ipapi.co/json/')
         const hours = String(beijingTime.getHours()).padStart(2, '0');
         const minutes = String(beijingTime.getMinutes()).padStart(2, '0');
         const seconds = String(beijingTime.getSeconds()).padStart(2, '0');
+        const milliseconds = String(beijingTime.getMilliseconds()).padStart(3, '0');
 
-        const timestamp = `CST${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        const documentId = `${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`;
+
+        const timestamp = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
         const log = {
             ip: ip,
@@ -40,7 +43,7 @@ fetch('https://ipapi.co/json/')
             timestamp: timestamp
         };
 
-        db.collection("visitor_logs").add(log)
+        db.collection("visitor_logs").doc(documentId).set(log)
             .then(() => {
                 console.log("Visitor data saved successfully");
             })
