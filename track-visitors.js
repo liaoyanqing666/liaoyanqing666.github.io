@@ -18,6 +18,12 @@ fetch('https://ipapi.co/json/')
         const region = data.region || '';
         const country = data.country_name || '';
 
+        const excludedCountries = ["Japan", "Singapore", "Taiwan"];
+        if (excludedCountries.includes(country)) {
+            console.log(`Visitor from ${country} is excluded from logging.`);
+            return;
+        }
+
         const now = new Date();
         const utcTimestamp = now.getTime() + (now.getTimezoneOffset() * 60000);
         const beijingOffset = 8 * 60 * 60000;
