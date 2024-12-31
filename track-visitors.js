@@ -1,3 +1,10 @@
+if (window.location.hostname !== 'siyuanli.tech' && 
+    window.location.hostname !== 'www.siyuanli.tech' &&
+    window.location.hostname !== 'liaoyanqing666.github.io') {
+  console.log("skip record");
+  return;
+}
+
 const firebaseConfig = {
     apiKey: "AIzaSyA-3ixTu3oWvwF4z0Jdn5M76zte5SwEDGI",
     authDomain: "personal-website-52b2e.firebaseapp.com",
@@ -48,7 +55,6 @@ fetch('https://ipapi.co/json/')
         };
 
         const logPath = `visitor_logs/${year}-${month}/${day}`;
-
         db.collection(logPath).doc(`${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`).set(log)
             .then(() => {
                 console.log("Visitor data saved successfully");
