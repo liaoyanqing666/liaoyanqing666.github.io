@@ -28,7 +28,7 @@ Once you've forked the repository, you'll see several files, including `index.ht
 - **game.html**: This is a small Easter egg game I included. You can choose to keep it or remove it.
 - **LICENSE**: This file contains the open-source license for the website. You don't need to modify it, but you can replace it with a more permissive MIT license if desired.
 - **CNAME**: This file is used to link a custom domain. **Be sure to delete this file if you're not using a custom domain**. To delete it, open the file, click the three dots in the top-right corner, and select **Delete file**.
-- - **track-visitors.js**: This file is used to record who visited the site and is currently sent to the project author's database, be sure to **delete this file** first
+- **track-visitors.js**: This file is used to record who visited the site and is currently sent to the project author's database, be sure to **delete this file** first
 
 ### Edit the Content
 
