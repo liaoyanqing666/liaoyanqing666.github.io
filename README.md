@@ -27,8 +27,8 @@ Once you've forked the repository, you'll see several files, including `index.ht
 - **404.html**: This file defines the content that appears when someone tries to visit a page on your website that doesn't exist.
 - **game.html**: This is a small Easter egg game I included. You can choose to keep it or remove it.
 - **LICENSE**: This file contains the open-source license for the website. You don't need to modify it, but you can replace it with a more permissive MIT license if desired.
-- **CNAME**: This file is used to link a custom domain. **Be sure to delete this file if you're not using a custom domain**. To delete it, open the file, click the three dots in the top-right corner, and select **Delete file**.
-- **track-visitors.js**: This file is used to record who visited the site and is currently sent to the project author's database, be sure to **delete this file** first
+- **CNAME**: This file is used to link a custom domain. **Be sure to delete this file** if you're not using a custom domain. To delete it, open the file, click the three dots in the top-right corner, and select **Delete file**.
+- **track-visitors.js**: This file is used to record who visited the site and the recorded data is currently sent to the project author's database, be sure to **delete this file**.
 
 ### Edit the Content
 
@@ -49,7 +49,7 @@ Once you've forked the repository, you'll see several files, including `index.ht
 
 ## 如何从零开始创建自己的网站 (Chinese)
 
-如果是纯小白，可以通过[这个网址](https://blog.csdn.net/m0_61718615/article/details/142624599)访问带图版，并且步骤描写更为详细。
+如果是纯小白，可以通过[这个网址](https://blog.csdn.net/m0_61718615/article/details/142624599)访问带图版，并且步骤描写更为详细（包含无代码的办法）。
 
 ### Fork 这个仓库
 
@@ -68,8 +68,8 @@ fork 仓库后，您会看到多个文件，包括 `index.html`、`styles.css` �
 - **404.html**: 当用户访问您网站中不存在的页面时，这个文件定义了出现的内容。
 - **game.html**: 这是我添加的一个小彩蛋游戏，您可以选择保留或删除。
 - **LICENSE**: 包含网站的开源许可条款，无需更改，也可以替换为更加开放的 MIT 协议。
-- **CNAME**: 这个文件用于关联自定义域名，**如果不需要自定义域名，请务必删除**。操作步骤为：打开该文件，点击页面右上角的“三个点”图标，选择 **Delete file**。
-- **track-visitors.js**: 这个文件用于记录谁访问了这个网站，目前是发送到此项目作者的数据库，一定要首先**删除这个文件**
+- **CNAME**: 这个文件用于关联自定义域名，如果不需要自定义域名，**请务必删除**。操作步骤为：打开该文件，点击页面右上角的“三个点”图标，选择 **Delete file**。
+- **track-visitors.js**: 这个文件用于记录谁访问了这个网站，目前是发送到此项目作者的数据库，尽量**删除这个文件**。
 
 ### 编辑内容
 
