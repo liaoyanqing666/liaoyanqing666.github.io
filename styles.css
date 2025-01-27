@@ -31,6 +31,10 @@ header {
     margin-bottom: 0px;
 }
 
+img {
+    vertical-align: middle;
+}
+
 .container {
     width: 65%;
     max-width: 1100px;
