@@ -204,17 +204,6 @@ main h2:first-of-type {
     margin-top: 40px;
 }
 
-.details h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text-color);
-}
-
-.details p {
-    font-size: 0.95rem;
-    color: #555;
-}
-
 .date {
     font-size: 0.75rem;
     font-style: italic;
@@ -259,8 +248,32 @@ main h2:first-of-type {
     margin-top: 5px;
 }
 
-.details {
+.details,
+.details-with-logo {
+    margin-top: 10px;
     flex: 1;
+}
+
+.details h3,
+.details-with-logo h3{
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.details p,
+.details-with-logo p{
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.details-with-logo p {
+    margin-left: 55px;
 }
 
 .content {
@@ -268,6 +281,7 @@ main h2:first-of-type {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    /* width: 50%; */
 }
 
 .awards-list,
@@ -375,12 +389,23 @@ footer p {
         font-size: 1.2rem;
     }
 
-    .details h3 {
+    .details,
+    .details-with-logo {
+        margin-left: 20px;
+    }
+
+    .details h3,
+    .details-with-logo h3 {
         font-size: 1rem;
     }
 
-    .details p {
+    .details p,
+    .details-with-logo p {
         font-size: 0.9rem;
+    }
+
+    .details-with-logo p {
+        margin-left: 0px;
     }
 
     .education-item,
