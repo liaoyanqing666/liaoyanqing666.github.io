@@ -252,6 +252,7 @@ main h2:first-of-type {
 .details-with-logo {
     margin-top: 10px;
     flex: 1;
+    margin-left: 0px;
 }
 
 .details h3,
@@ -268,12 +269,13 @@ main h2:first-of-type {
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
 }
 
 .details-with-logo p {
-    margin-left: 55px;
+    margin-left: 50px;
 }
 
 .content {
@@ -397,6 +399,7 @@ footer p {
     .details h3,
     .details-with-logo h3 {
         font-size: 1rem;
+        margin-bottom: 10px;
     }
 
     .details p,
