@@ -260,6 +260,12 @@ main h2:first-of-type {
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-color);
+    display: flex;
+    align-items: flex-start;
+}
+
+.details h3{
+    margin-bottom: 5px;
 }
 
 .details p,
@@ -271,7 +277,8 @@ main h2:first-of-type {
 .logo {
     width: 40px;
     height: 40px;
-    margin-right: 5px;
+    margin-right: 10px;
+    margin-top: 5px;
 }
 
 .details-with-logo p {
@@ -409,6 +416,10 @@ footer p {
 
     .details-with-logo p {
         margin-left: 0px;
+    }
+
+    .logo {
+        margin-top: 0px;
     }
 
     .education-item,
