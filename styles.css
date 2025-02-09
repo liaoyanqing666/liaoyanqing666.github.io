@@ -296,14 +296,13 @@ main h2:first-of-type {
 .awards-list,
 .skills-list {
     list-style-type: none;
-    margin: 0;
+    margin-left: 20px;
     padding: 0;
 }
 
-.awards-list li,
-.skills-list li {
+.awards-list li{
     position: relative;
-    padding-right: 120px;
+    padding-right: 110px;
     margin-bottom: 12px;
     font-size: 0.9rem;
 }
@@ -399,6 +398,7 @@ footer p {
     }
 
     .details,
+    .courses,
     .details-with-logo {
         margin-left: 20px;
     }
