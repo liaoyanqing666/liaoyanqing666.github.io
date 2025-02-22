@@ -41,9 +41,7 @@
             border-radius: 50%;
             cursor: pointer;
             transition: transform 0.2s ease;
-        }
-        .ball:hover {
-            transform: scale(1.2);
+            cursor: default;
         }
         #controls {
             margin-top: 20px;
@@ -68,7 +66,7 @@
         #startButton:hover, #stopButton:hover {
             background-color: #3c6e91;
         }
-        #sizeInput, #colorInput {
+        #sizeInput, #colorInput, #countInput {
             margin-left: 10px;
             padding: 5px;
             border: 1px solid #ced4da;
@@ -129,7 +127,7 @@
             #startButton, #stopButton {
                 width: 100%;
             }
-            #sizeInput, #colorInput {
+            #sizeInput, #colorInput, #countInput {
                 margin-left: 0;
                 margin-top: 10px;
                 width: 100%;
@@ -147,14 +145,9 @@
 <body>
     <div id="title">🎯 Click the Ball Game</div>
     <div id="controls">
-        <div>
-            <label for="sizeInput">⚙️ Ball Size (10-100px):</label>
-            <input type="number" id="sizeInput" min="10" max="100" value="30">
-        </div>
-        <div>
-            <label for="colorInput">🎨 Ball Color:</label>
-            <input type="color" id="colorInput" value="#ff6347">
-        </div>
+       <div><label for="sizeInput">⚙️ Ball Size (10-100px):</label><input type="number" id="sizeInput" min="10" max="100" value="30"></div>
+       <div><label for="countInput">🎯 Ball Count (1-10):</label><input type="number" id="countInput" min="1" max="10" value="1"></div>
+       <div><label for="colorInput">🎨 Ball Color:</label><input type="color" id="colorInput" value="#ff6347"></div>
         <button id="startButton">🚀 Start Game</button>
         <button id="stopButton" style="display: none;">🛑 Stop Game</button>
     </div>
@@ -166,7 +159,8 @@
     <div id="gameContainer"></div>
     <div id="highScore">🥇 High Score: <span id="highScoreValue">0</span></div>
     <div id="footer">
-        Game repository: <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank">https://github.com/liaoyanqing666/liaoyanqing666.github.io</a><br>
+        Game repository: <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank">https://github.com/liaoyanqing666/liaoyanqing666.github.io</a>
+
         Game author: <a href="https://siyuanli.tech" target="_blank">Siyuan Li</a>
     </div>
     <script>
@@ -179,22 +173,39 @@
         const stopButton = document.getElementById("stopButton");
         const sizeInput = document.getElementById("sizeInput");
         const colorInput = document.getElementById("colorInput");
+        const countInput = document.getElementById("countInput");
         let score = 0;
         let totalClicks = 0;
         let timeLeft = 30;
         let isGameStarted = false;
-        let gameInterval;
-        let timerInterval;
         let ballSize = 30;
         let ballColor = "#ff6347";
         let highScore = 0;
+
+        function checkCollision(x, y, size) {
+            const balls = gameContainer.getElementsByClassName("ball");
+            for (const ball of balls) {
+                const ballX = parseInt(ball.style.left);
+                const ballY = parseInt(ball.style.top);
+                const dx = x - ballX;
+                const dy = y - ballY;
+                if (dx * dx + dy * dy < size * size) return true;
+            }
+            return false;
+        }
+
         function createBall() {
             const ball = document.createElement("div");
             ball.classList.add("ball");
             const maxX = gameContainer.clientWidth - ballSize;
             const maxY = gameContainer.clientHeight - ballSize;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
+            
+            let randomX, randomY;
+            do {
+                randomX = Math.floor(Math.random() * maxX);
+                randomY = Math.floor(Math.random() * maxY);
+            } while (checkCollision(randomX, randomY, ballSize));
+            
             ball.style.width = ballSize + "px";
             ball.style.height = ballSize + "px";
             ball.style.backgroundColor = ballColor;
@@ -210,22 +221,12 @@
             });
             gameContainer.appendChild(ball);
         }
-        function updateScore() {
-            scoreDisplay.textContent = score;
+
+        function updateScore() { scoreDisplay.textContent = score; }
+        function updateAccuracy() { 
+            accuracyDisplay.textContent = Math.floor((totalClicks ? score / totalClicks : 0) * 100); 
         }
-        function updateAccuracy() {
-            let accuracy = totalClicks === 0 ? 0 : Math.floor((score / totalClicks) * 100);
-            accuracyDisplay.textContent = accuracy;
-        }
-        function updateTimer() {
-            timeLeft--;
-            timerDisplay.textContent = timeLeft;
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                clearInterval(gameInterval);
-                endGame();
-            }
-        }
+
         startButton.addEventListener("click", () => {
             if (!isGameStarted) {
                 isGameStarted = true;
@@ -234,39 +235,51 @@
                 timeLeft = 30;
                 ballSize = parseInt(sizeInput.value);
                 ballColor = colorInput.value;
-                updateScore();
-                updateAccuracy();
-                timerDisplay.textContent = timeLeft;
+                ballCount = parseInt(countInput.value);
+                
+                gameContainer.innerHTML = "";
+                for (let i = 0; i < ballCount; i++) createBall();
+                
+                timerInterval = setInterval(updateTimer, 1000);
                 startButton.style.display = "none";
                 stopButton.style.display = "block";
-                createBall();
-                timerInterval = setInterval(updateTimer, 1000);
             }
         });
+
         stopButton.addEventListener("click", () => {
             if (isGameStarted) {
                 endGame();
             }
         });
+
         gameContainer.addEventListener("click", (event) => {
             if (isGameStarted && !event.target.classList.contains("ball")) {
                 totalClicks++;
                 updateAccuracy();
             }
         });
+
+        function updateTimer() {
+            timeLeft--;
+            timerDisplay.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                endGame();
+            }
+        }
+
         function endGame() {
-            gameContainer.innerHTML = "";
             clearInterval(timerInterval);
-            clearInterval(gameInterval);
             isGameStarted = false;
             startButton.style.display = "block";
             stopButton.style.display = "none";
+            gameContainer.innerHTML = "";
             if (score > highScore) {
                 highScore = score;
                 highScoreDisplay.textContent = highScore;
-                alert("🎉 New High Score! Your score is: " + score);
+                alert(`🎉 New High Score! Score: ${score}`);
             } else {
-                alert("Game over! Your score is: " + score);
+                alert(`🎉 Game Over! Score: ${score}`);
             }
         }
     </script>
