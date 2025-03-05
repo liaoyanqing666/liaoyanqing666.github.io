@@ -52,6 +52,14 @@ img {
     vertical-align: middle;
 }
 
+a {
+    color: var(--link);
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
 .container {
     width: 65%;
     max-width: 1100px;
@@ -216,14 +224,6 @@ section {
 
 .intro p {
     font-size: 0.9rem;
-}
-
-.intro a {
-    color: var(--link);
-}
-
-.intro a:hover {
-    color: var(--link-hover);
 }
 
 main h2 {
