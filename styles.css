@@ -5,29 +5,46 @@
 }
 
 :root {
-    --primary-color: #5b8db8;
-    --secondary-color: #a1c4d0;
-    --text-color: #333;
-    --background-color: #f9f9f9;
-    --header-background: #fff;
-    --footer-background: #fff;
-    --link-color: #5b8db8;
-    --link-hover-color: #3c6e91;
+    --primary: #5b8db8;
+    --secondary: #a1c4d0;
+    --surface: #fff;
+    --emphasis: #eef3f6;
+    --text-primary: #333;
+    --text-secondary: #777;
+    --background: #f9f9f9;
+    --link: var(--primary);
+    --link-hover: #3c6e91;
+    --border: #ddd;
+    --transition: 0.3s ease;
+}
+
+:root.dark-theme {
+    --primary: #7ab3e0;
+    --secondary: #88b9c5;
+    --surface: #2d2d2d;
+    --emphasis: #2d3748;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --background: #1a1a1a;
+    --link: #7ab3e0;
+    --link-hover: #a1d1f7;
+    --border: #404040;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     line-height: 1.7;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--background);
+    color: var(--text-primary);
     font-size: 13px;
+    transition: background-color var(--transition);
 }
 
 header {
-    background-color: var(--header-background);
+    background-color: var(--surface);
     padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border);
     margin-bottom: 0px;
 }
 
@@ -52,6 +69,23 @@ section {
     margin-bottom: 70px;
 }
 
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform var(--transition);
+    color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.2);
+}
+
 .profile-info {
     flex: 1;
 }
@@ -61,38 +95,40 @@ section {
     font-weight: 700;
     margin-bottom: 10px;
     font-family: 'Merriweather', serif;
-    color: var(--primary-color);
+    color: var(--primary);
 }
 
 .profile-info .chinese-name {
     font-weight: 400;
     font-size: 1.4rem;
-    color: var(--secondary-color);
+    color: var(--secondary);
 }
 
 .profile-info .subtitle {
     font-size: 0.95rem;
     margin-bottom: 14px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .profile-info p {
     font-size: 0.85rem;
     margin-bottom: 8px;
+    color: var(--text-primary);
 }
 
 .profile-info .icon {
     margin-right: 5px;
+    color: var(--text-secondary);
 }
 
 .profile-info a:not(.button) {
-    color: var(--link-color);
+    color: var(--link);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color var(--transition);
 }
 
 .profile-info a:not(.button):hover {
-    color: var(--link-hover-color);
+    color: var(--link-hover);
 }
 
 .links {
@@ -107,18 +143,17 @@ section {
 .button {
     display: inline-block;
     padding: 6px 10px;
-    background-color: var(--primary-color);
-    color: #fff;
+    background-color: var(--primary);
+    color: var(--surface);
     border-radius: 5px;
     text-decoration: none;
     margin-top: 7px;
     font-size: 0.85rem;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color var(--transition);
 }
 
 .button:hover {
-    background-color: var(--link-hover-color);
-    color: #fff;
+    background-color: var(--link-hover);
 }
 
 .carousel-container {
@@ -126,8 +161,8 @@ section {
     position: relative;
     margin: 0 auto;
     overflow: hidden;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    border: 1px solid var(--border);
 }
 
 .carousel-image {
@@ -150,11 +185,11 @@ section {
     padding: 6px;
     font-size: 16px;
     font-weight: bold;
-    color: var(--text-color);
+    color: var(--text-primary);
     border: none;
     user-select: none;
     border-radius: 50%;
-    transition: background 0.3s;
+    transition: all var(--transition);
 }
 
 .prev {
@@ -167,13 +202,13 @@ section {
 
 .prev:hover,
 .next:hover {
-    background-color: var(--link-hover-color);
-    color: #fff;
+    background-color: var(--link-hover);
+    color: var(--surface);
 }
 
 .intro {
-    background-color: #eef3f6;
-    color: var(--text-color);
+    color: var(--text-primary);
+    background-color: var(--emphasis);
     padding: 25px 0;
     margin-bottom: 40px;
     border-radius: 5px;
@@ -184,20 +219,20 @@ section {
 }
 
 .intro a {
-    color: var(--link-color);
+    color: var(--link);
 }
 
 .intro a:hover {
-    color: var(--link-hover-color);
+    color: var(--link-hover);
 }
 
 main h2 {
     font-size: 1.4rem;
     margin-top: 70px;
     margin-bottom: 30px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 10px;
-    color: var(--primary-color);
+    color: var(--primary);
 }
 
 main h2:first-of-type {
@@ -207,7 +242,7 @@ main h2:first-of-type {
 .date {
     font-size: 0.75rem;
     font-style: italic;
-    color: #777;
+    color: var(--text-secondary);
     display: block;
 }
 
@@ -235,9 +270,9 @@ main h2:first-of-type {
     align-items: flex-start;
     margin-bottom: 35px;
     gap: 20px;
-    background-color: #fff;
+    background-color: var(--surface);
     padding: 20px;
-    border-left: 4px solid var(--primary-color);
+    border-left: 4px solid var(--primary);
     border-radius: 5px;
 }
 
@@ -256,22 +291,19 @@ main h2:first-of-type {
 }
 
 .details h3,
-.details-with-logo h3{
+.details-with-logo h3 {
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--text-primary);
     display: flex;
     align-items: flex-start;
-}
-
-.details h3{
     margin-bottom: 5px;
 }
 
 .details p,
-.details-with-logo p{
+.details-with-logo p {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--text-secondary);
 }
 
 .logo {
@@ -290,7 +322,6 @@ main h2:first-of-type {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* width: 50%; */
 }
 
 .awards-list,
@@ -300,11 +331,12 @@ main h2:first-of-type {
     padding: 0;
 }
 
-.awards-list li{
+.awards-list li {
     position: relative;
     padding-right: 110px;
     margin-bottom: 12px;
     font-size: 0.9rem;
+    color: var(--text-primary);
 }
 
 .awards-list .date {
@@ -312,7 +344,6 @@ main h2:first-of-type {
     right: 0;
     top: 0;
     font-size: 0.9rem;
-    color: #777;
 }
 
 ul {
@@ -324,26 +355,26 @@ ul {
 ul li {
     margin-bottom: 10px;
     font-size: 0.9rem;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 footer {
-    background-color: var(--footer-background);
+    background-color: var(--surface);
     text-align: center;
     padding: 20px 0;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--border);
     margin-top: 60px;
     font-size: 0.75rem;
-    color: #777;
+    color: var(--text-secondary);
 }
 
 footer a {
-    color: var(--link-color);
+    color: var(--link);
     text-decoration: none;
 }
 
 footer a:hover {
-    color: var(--link-hover-color);
+    color: var(--link-hover);
 }
 
 footer p {

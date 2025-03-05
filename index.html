@@ -15,6 +15,7 @@
 <body>
     <header>
         <div class="container header-container">
+            <button id="theme-toggle" class="theme-toggle">🌛</button>
             <div class="profile-info">
                 <h1>Siyuan Li <span class="chinese-name">(黎思源)</span></h1>
                 <p class="subtitle"><b>🤖 Artificial Intelligence Student</b></p>
@@ -40,17 +41,20 @@
 
     <script>
         let currentSlide = 0;
-
         function changeSlide(direction) {
             const slides = document.querySelectorAll('.carousel-image');
             slides[currentSlide].classList.remove('active');
-
             currentSlide += direction;
             if (currentSlide >= slides.length) currentSlide = 0;
             if (currentSlide < 0) currentSlide = slides.length - 1;
-
             slides[currentSlide].classList.add('active');
         }
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark-theme');
+            const isDark = document.documentElement.classList.contains('dark-theme');
+            document.getElementById('theme-toggle').textContent = isDark ? '🌞' : '🌛';
+        });
     </script>
     
     <section class="intro">
