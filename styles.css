@@ -224,6 +224,11 @@ section {
 
 .intro p {
     font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.intro p:last-child {
+    margin-bottom: 0;
 }
 
 main h2 {
@@ -391,7 +396,7 @@ footer p {
 
     header {
         padding: 10px 0;
-        margin-bottom: 25px;
+        margin-bottom: 0;
     }
 
     .profile-info p {
@@ -464,7 +469,6 @@ footer p {
     }
 
     body {
-        font-size: 12px;
         line-height: 1.6;
     }
 }
