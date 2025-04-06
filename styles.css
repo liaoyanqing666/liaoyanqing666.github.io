@@ -37,7 +37,7 @@ body {
     line-height: 1.7;
     background-color: var(--background);
     color: var(--text-primary);
-    font-size: 20px;
+    font-size: 18px;
     transition: background-color var(--transition);
 }
 
@@ -251,6 +251,7 @@ main h2:first-of-type {
     justify-content: space-between;
     align-items: flex-start;
     gap: 20px;
+    font-size: 0.8rem;
 }
 
 .courses {
@@ -274,6 +275,7 @@ main h2:first-of-type {
     padding: 20px;
     border-left: 4px solid var(--primary);
     border-radius: 5px;
+    font-size: 0.8rem;
 }
 
 .experience-item .date,
