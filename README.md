@@ -40,9 +40,32 @@ Once you've forked the repository, you'll see several files, including `index.ht
 ### Deploy Your Website
 
 1. After finishing your edits and committing your changes, go to the GitHub repository page and click the **Settings** tab at the top.
+   
 2. In the left-hand menu, find and click **Pages**.
-3. In the **Branch** section, change the option from **None** to the `main` branch and save.
-4. Wait a few seconds to a few minutes. After refreshing the **Pages** settings page, you'll see a URL at the top. This is the link to your newly created personal website.
+   
+3. When the part you want to edit is not in `index.html` (for example, the part where you want to create a *Patents*), you copy the part that is closest in style (for example, the *Papers* section). Be careful not to change the original `class` name. (This will keep the original style)
+
+   For example:
+   ```html
+    <section>
+        <h2>📚 Patents</h2>
+        <div class="papers-item"> <!-- The class name should not be modified -->
+            <div class="details"> <!-- The class name should not be modified -->
+                <h3>This is the name of a patent.</p>
+            </div>
+            <div class="content"> <!-- The class name should not be modified -->
+                <ul>
+                    <li>This is something else you want to display.</li>
+                </ul>
+            </div>
+        </div>
+   ```
+
+    This way, you can add a new *Patents* section to your webpage.
+
+4. In the **Branch** section, change the option from **None** to the `main` branch and save.
+   
+5. Wait a few seconds to a few minutes. After refreshing the **Pages** settings page, you'll see a URL at the top. This is the link to your newly created personal website.
 
 ### Congratulations! Your Website is Successfully Deployed!
 
@@ -74,9 +97,32 @@ fork 仓库后，您会看到多个文件，包括 `index.html`、`styles.css` �
 ### 编辑内容
 
 1. 克隆仓库到本地后，建议使用 **Visual Studio Code (VSCode)** 进行编辑。
+   
 2. 您可以安装 VSCode 的 **Live Server 插件**，实时预览您编辑后的页面效果。
-3. 修改完 `index.html` 和其他文件后，将更改提交并推送到您的 GitHub 仓库。
-4. 切记**整个删除**`track-visitors.js`文件，否则你的网站访客记录会被我全部收到。
+   
+3. 当您希望编辑的部分不在 `index.html` 中时（例如您想要创建一个 *Patents（专利）* 的部分），您科研直接复制样式上最接近的部分（例如 *Papers* 部分）进行修改。注意，不要修改原本的 `class` 的名称。（这样才能保留原先的样式）
+
+   例如：
+   ```html
+    <section>
+        <h2>📚 Patents</h2>
+        <div class="papers-item"> <!-- class 的内容不要修改 -->
+            <div class="details"> <!-- class 的内容不要修改 -->
+                <h3>This is the name of a patent.</p>
+            </div>
+            <div class="content"> <!-- class 的内容不要修改 -->
+                <ul>
+                    <li>This is something else you want to display.</li>
+                </ul>
+            </div>
+        </div>
+   ```
+
+   这样就可以在网页中添加一个新的 *Patents* 部分。
+
+4. 修改完 `index.html` 和其他文件后，将更改提交并推送到您的 GitHub 仓库。
+
+5. 切记**整个删除**`track-visitors.js`文件，否则你的网站访客记录会被我全部收到。
 
 ### 部署网站
 
