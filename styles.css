@@ -259,11 +259,15 @@ main h2:first-of-type {
     font-size: 0.8rem;
 }
 
-.courses {
+.education-item{
+    margin-bottom: 25px;
+}
+
+.education-introduction {
     margin-top: 10px;
 }
 
-.courses p {
+.education-introduction p {
     font-size: 0.9rem;
     line-height: 1.6;
 }
@@ -436,7 +440,7 @@ footer p {
     }
 
     .details,
-    .courses,
+    .education-introduction,
     .details-with-logo {
         margin-left: 20px;
     }
