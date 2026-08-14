@@ -171,12 +171,13 @@ section {
     overflow: hidden;
     border-radius: 5px;
     border: 1px solid var(--border);
+    aspect-ratio: 3 / 4; /* 与 photo2.jpg 保持相同的 3:4 比例 */
 }
 
 .carousel-image {
     display: none;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -426,13 +427,12 @@ footer p {
 
     .carousel-container {
         width: 30%;
-        height: auto;
         margin-top: 15px;
         position: relative;
     }
 
     .carousel-image {
-        height: auto;
+        height: 100%;
     }
 
     .prev,
