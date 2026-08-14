@@ -1,4 +1,4 @@
-# Create your own website （siyuanli.tech）
+# Create your own website (siyuanli.tech)
 
 Hi, I'm Siyuan Li (黎思源), and this is the repo of my personal website, which also serves as my resume. I'm glad you found my website, and welcome!
 

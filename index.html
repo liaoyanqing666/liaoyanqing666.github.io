@@ -6,7 +6,7 @@
     <title>Siyuan Li (黎思源)</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Merriweather:wght@700&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
@@ -15,12 +15,15 @@
 <body>
     <header>
         <div class="container header-container">
-            <button id="theme-toggle" class="theme-toggle">🌛</button>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">🌛</button>
             <div class="profile-info">
                 <h1>Siyuan Li <span class="chinese-name">(黎思源)</span></h1>
-                <p class="subtitle"><b>🤖 Artificial Intelligence Student</b></p>
+                <div class="subtitle-row">
+                    <p class="subtitle"><b>🤖 Artificial Intelligence Student</b></p>
+                    <p class="collaboration-note"><b>You are welcomed to reach out!</b></p>
+                </div>
                 <p><span class="icon">📞</span> Tel: (+86) 13815397394</p>
-                <p><span class="icon">✉️</span> Email: <a href="mailto:1793706453@qq.com">1793706453@qq.com</a> &amp; <a href="mailto:liaoyanqing666@gmail.com">liaoyanqing666@gmail.com</a></p>
+                <p><span class="icon">✉️</span> Email: <a href="mailto:1793706453@qq.com">1793706453@qq.com</a> <span class="email-secondary">&amp; <a href="mailto:liaoyanqing666@gmail.com">liaoyanqing666@gmail.com</a></span></p>
                 <p><span class="icon">💬</span> WeChat: abcdefghi314159</p>
                 <div class="links">
                     <a href="https://github.com/liaoyanqing666" target="_blank" class="button">🐱 GitHub</a>
@@ -29,14 +32,14 @@
                     <a href="files/undergraduate transcript.pdf" target="_blank" class="button">📝 Undergraduate Transcript</a>
                 </div>
             </div>
-            <div class="carousel-container">
+            <div class="carousel-container" tabindex="0" role="region" aria-label="Profile photo carousel">
                 <img src="images/photo5.png" class="carousel-image active" alt="Siyuan Li Photo 5">
                 <img src="images/photo1.png" class="carousel-image" alt="Siyuan Li Photo 1">
                 <img src="images/photo2.jpg" class="carousel-image" alt="Siyuan Li Photo 2">
                 <img src="images/photo3.jpg" class="carousel-image" alt="Siyuan Li Photo 3">
                 <img src="images/photo4.png" class="carousel-image" alt="Siyuan Li Photo 4">
-                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                <button class="prev" type="button" onclick="changeSlide(-1)" aria-label="Previous photo">&#10094;</button>
+                <button class="next" type="button" onclick="changeSlide(1)" aria-label="Next photo">&#10095;</button>
             </div>
         </div>
     </header>
@@ -46,23 +49,62 @@
         function changeSlide(direction) {
             const slides = document.querySelectorAll('.carousel-image');
             slides[currentSlide].classList.remove('active');
-            currentSlide += direction;
-            if (currentSlide >= slides.length) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = slides.length - 1;
+            slides[currentSlide].setAttribute('aria-hidden', 'true');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
             slides[currentSlide].classList.add('active');
+            slides[currentSlide].setAttribute('aria-hidden', 'false');
         }
 
-        document.getElementById('theme-toggle').addEventListener('click', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+
+        function updateThemeControl() {
+            const isDark = document.documentElement.classList.contains('dark-theme');
+            themeToggle.textContent = isDark ? '🌞' : '🌛';
+            themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+        }
+
+        try {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        } catch (error) {
+            // The page remains fully usable when storage is unavailable.
+        }
+        updateThemeControl();
+
+        themeToggle.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark-theme');
             const isDark = document.documentElement.classList.contains('dark-theme');
-            document.getElementById('theme-toggle').textContent = isDark ? '🌞' : '🌛';
+            updateThemeControl();
+            try {
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            } catch (error) {
+                // Ignore storage errors without interrupting the theme switch.
+            }
+        });
+
+        document.querySelector('.carousel-container').addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault();
+                changeSlide(event.key === 'ArrowLeft' ? -1 : 1);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.carousel-image');
+            slides.forEach((slide, index) => slide.setAttribute('aria-hidden', index === 0 ? 'false' : 'true'));
+
+            document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+
         });
     </script>
     
     <section class="intro">
         <div class="container">
             <p>
-                I am Siyuan Li, a Ph.D. student in Computer Science at the <a href="https://uga.edu" target="_blank">University of Georgia</a>, <a href="https://llm.franklinresearch.uga.edu/" target="_blank">UGA LLM Lab</a>, advised by Prof. <a href="https://llm.franklinresearch.uga.edu/tianming-liu.html" target="_blank">Tianming Liu</a>, a distinguished researcher in medical AI and LLMs. I am also a visiting Ph.D. student at the <a href="https://camca.mgh.harvard.edu/" target="_blank">CAMCA Laboratory</a> at Harvard Medical School and Massachusetts General Hospital, working with Prof. <a href="https://xiangli-shaun.github.io/" target="_blank">Xiang Li</a>. I earned my Bachelor's degree in Artificial Intelligence from <a href="https://www.shu.edu.cn/" target="_blank">Shanghai University</a>, graduating first in my major. I prefer to explore, learn, and create things from scratch, rather than relying solely on pre-made solutions. For instance, I built this webpage myself (with an Easter egg 🐣), and it has received <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank"><img src="https://img.shields.io/github/stars/liaoyanqing666/liaoyanqing666.github.io" alt="Stars"/></a> <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank"><img src="https://img.shields.io/github/forks/liaoyanqing666/liaoyanqing666.github.io" alt="Forks"/></a>.
+                I am Siyuan Li, a Ph.D. student in Computer Science in <a href="https://uga-llm-lab.github.io/" target="_blank">UGA LLM Lab</a> at the <a href="https://uga.edu" target="_blank">University of Georgia</a>, advised by Prof. <a href="https://uga-llm-lab.github.io/tianming-liu.html" target="_blank">Tianming Liu</a>, a distinguished researcher in medical AI and LLMs. I am also a visiting Ph.D. student at the <a href="https://camca.mgh.harvard.edu/" target="_blank">CAMCA Laboratory</a> at Harvard Medical School and Massachusetts General Hospital, working with Prof. <a href="https://xiangli-shaun.github.io/" target="_blank">Xiang Li</a>. I earned my Bachelor's degree in Artificial Intelligence from <a href="https://www.shu.edu.cn/" target="_blank">Shanghai University</a>, graduating first in my major. I prefer to explore, learn, and create things from scratch, rather than relying solely on pre-made solutions. For instance, I built this webpage myself (with an Easter egg 🐣), and it has received <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank"><img src="https://img.shields.io/github/stars/liaoyanqing666/liaoyanqing666.github.io" alt="Stars"/></a> <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank"><img src="https://img.shields.io/github/forks/liaoyanqing666/liaoyanqing666.github.io" alt="Forks"/></a>.
             </p>
             <p>
                 As an intern at the <a href="https://en.westlake.edu.cn/" target="_blank">AI for Scientific Simulation and Discovery Lab</a> at <a href="https://ai4s.lab.westlake.edu.cn/" target="_blank">Westlake University</a>, I led an exploratory project on AI-driven physical law discovery under the mentorship of <a href="https://tailin.org/" target="_blank">Prof. Tailin Wu</a>. Within my university, I have participated in research projects under <a href="https://yuhang.netlify.app/" target="_blank">Prof. Hang Yu</a> and in the Brain-like Computing Center led by <a href="https://www.dlcloud.info/" target="_blank">Prof. Huiran Zhang</a>. For my undergraduate thesis, I designed and implemented a medical question-answering system incorporating multimodal RAG components, and fine-tuned multimodal models with medical data. Previously, under the guidance of <a href="https://cswhjiang.github.io/" target="_blank">Dr. Wenhao Jiang</a>, I worked on enhancing the complex reasoning capabilities of medical large language models.
@@ -85,7 +127,7 @@
                             <p class="date">08/2025 (Deferred to 01/2026) - 06/2030</p>
                         </div>
                         <div class="education-info">
-                            <p><strong>Supervisor:</strong> <a href="https://scholar.google.com/citations?user=92RPXm0AAAAJ" target="_blank">Prof. Tianming Liu</a></p>
+                            <p><strong>Supervisor:</strong> <a href="https://uga-llm-lab.github.io/tianming-liu.html" target="_blank">Prof. Tianming Liu</a></p>
                             <p><strong>GPA:</strong> 4.0/4.0</p>
                         </div>
                     </div>
@@ -100,7 +142,7 @@
                         </div>
                         <div class="education-info">
                             <p><strong>Supervisor:</strong> <a href="https://xiangli-shaun.github.io/" target="_blank">Prof. Xiang Li</a></p>
-                            <p><strong>Research Area:</strong> AI/LLM for Medicine.</a></p>
+                            <p><strong>Research Area:</strong> AI/LLM for Medicine.</p>
                         </div>
                     </div>
                 </div>
@@ -116,9 +158,9 @@
                             <p><strong>GPA:</strong> 3.81/4.0 (93.60/100)</p>
                             <p><strong>Ranking:</strong> 1/52 (1/31 in class)</p>
                         </div>
-                    </div>
-                    <div class="education-introduction">
-                        <p><b>Key Courses</b>: Calculus (94), Linear Algebra (100), Object-Oriented Programming (94), Probability and Statistics (95), Data Structures (97), Pattern Recognition (90), Computer Vision (91), Operations and Optimization (88), Data Mining and Knowledge Processing (94), Mathematical Logic (95), Principles and Techniques of LLMs (95), Principles and Algorithms of AI (93)</p>
+                        <div class="education-introduction">
+                            <p><b>Key Courses</b>: Calculus (94), Linear Algebra (100), Object-Oriented Programming (94), Probability and Statistics (95), Data Structures (97), Pattern Recognition (90), Computer Vision (91), Operations and Optimization (88), Data Mining and Knowledge Processing (94), Mathematical Logic (95), Principles and Techniques of LLMs (95), Principles and Algorithms of AI (93)</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -351,25 +393,37 @@
             <section>
                 <h2>🏆 Awards</h2>
                 <ul class="awards-list">
-                    <li><a href="https://icpc.global/" target="_blank">ICPC (International Collegiate Programming Contest) Asia Regional Contest (Hefei)</a> Bronze Medal 🥉 <span class="date">11/2023</span></li>
-                    <li><a href="https://icpc.global/" target="_blank">ICPC (International Collegiate Programming Contest) Asia Regional Contest (Nanjing)</a> Bronze Medal 🥉 <span class="date">11/2022</span></li>
-                    <li><a href="http://www.asc-events.org/" target="_blank">ASC Student Supercomputer Challenge</a> National Second Prize 🥈 <span class="date">02/2024</span></li>
-                    <li><a href="https://dasai.lanqiao.cn/" target="_blank">Lanqiao Cup C/C++ Programming Contest (National)</a> Third Prize 🥉 <span class="date">06/2023</span></li>
-                    <li><a href="https://dasai.lanqiao.cn/" target="_blank">Lanqiao Cup C/C++ Programming Contest (Shanghai Division)</a> First Prize 🥇 <span class="date">04/2023</span></li>
-                    <li><a href="https://ccpc.io/" target="_blank">CCPC (China Collegiate Programming Contest) Shanghai Programming Contest</a> Silver Medal 🥈 <span class="date">10/2022</span></li>
+                    <li><span class="award-description"><a href="https://icpc.global/" target="_blank">ICPC (International Collegiate Programming Contest) Asia Regional Contest (Hefei)</a> Bronze Medal 🥉</span><span class="date">11/2023</span></li>
+                    <li><span class="award-description"><a href="https://icpc.global/" target="_blank">ICPC (International Collegiate Programming Contest) Asia Regional Contest (Nanjing)</a> Bronze Medal 🥉</span><span class="date">11/2022</span></li>
+                    <li><span class="award-description"><a href="http://www.asc-events.org/" target="_blank">ASC Student Supercomputer Challenge</a> National Second Prize 🥈</span><span class="date">02/2024</span></li>
+                    <li><span class="award-description"><a href="https://dasai.lanqiao.cn/" target="_blank">Lanqiao Cup C/C++ Programming Contest (National)</a> Third Prize 🥉</span><span class="date">06/2023</span></li>
+                    <li><span class="award-description"><a href="https://dasai.lanqiao.cn/" target="_blank">Lanqiao Cup C/C++ Programming Contest (Shanghai Division)</a> First Prize 🥇</span><span class="date">04/2023</span></li>
+                    <li><span class="award-description"><a href="https://ccpc.io/" target="_blank">CCPC (China Collegiate Programming Contest) Shanghai Programming Contest</a> Silver Medal 🥈</span><span class="date">10/2022</span></li>
                 </ul>
             </section>
 
             <section>
-                <h2>📚 Papers</h2>
+                <h2>📚 Papers (First / Co-first Author)</h2>
                 <div class="papers-item">
                     <div class="details">
-                        <h3>The Rise of Autonomous AI Agents: A Comprehensive Survey of OpenClaw - Architecture, Security, Ecosystem, and Beyond</h3>
-                        <p><a href="https://www.researchgate.net/publication/404248344_The_Rise_of_Autonomous_AI_Agents_A_Comprehensive_Survey_of_OpenClaw_-_Architecture_Security_Ecosystem_and_Beyond">Paper Link</a> ResearchGate Preprint. DOI: 10.13140/RG.2.2.35940.13443.</p>
+                        <h3>Imaging-Centered Artificial Intelligence for Precision Cancer Immunotherapy: Multimodal Biomarkers, Treatment-Effect Estimation, and Clinical Translation</h3>
+                        <p><a href="https://www.researchsquare.com/article/rs-10468208/v1">Paper Link</a> Research Square Preprint. DOI: 10.21203/rs.3.rs-10468208/v1.</p>
                     </div>
                     <div class="content">
                         <ul>
-                            <li>Authors: Siyuan Li, Peng Shu, Churan Yu, Peilong Wang, Ruidong Zhang, Bowen Guo, Xinliang Li, Ruiyu Yan, Arif Hassan Zidan, Yi Pan, Wei Ruan, Lifeng Chen, Junhao Chen, Zhaojun Ding, Yiwei Li, Zhengliang Liu, Haixing Dai, Lin Zhao, Yu Bao, Xiang Li, Wei Zhang, Tianming Liu.</li>
+                            <li>Authors: Shengyang Zhong, <b>Siyuan Li</b>, Wanrong Yang, Zheng Zheng, Zhengliang Liu, Jin Xie, Jin Li, Bin Yi, Lin Zhao, Xiang Li, Wei Liu, Lian Zhang, Tianming Liu, Ning Qiang.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="papers-item">
+                    <div class="details">
+                        <h3>ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study</h3>
+                        <p><a href="https://arxiv.org/abs/2608.05201">Paper Link</a> arXiv Preprint. arXiv:2608.05201.</p>
+                    </div>
+                    <div class="content">
+                        <ul>
+                            <li>Authors: <b>Siyuan Li</b>, Peng Shu, Churan Yu, Peilong Wang, Ruidong Zhang, Bowen Guo, Xinliang Li, Ruiyu Yan, Arif Hassan Zidan, Yi Pan, Wei Ruan, Lifeng Chen, Junhao Chen, Zhaojun Ding, Yiwei Li, Zhengliang Liu, Haixing Dai, Lin Zhao, Yu Bao, Xiang Li, Wei Zhang, Tianming Liu.</li>
                         </ul>
                     </div>
                 </div>
@@ -381,7 +435,7 @@
                     </div>
                     <div class="content">
                         <ul>
-                            <li>Authors: Siyuan Li, Xiangze Meng, Yijian Yang, Yiwen Xu, Yunfei Wang, Chenghu Qiu, Hanyi Jiang, Pin Wu, Shengbo Chen, Xiao Wei, Hao Wang, Lan Ni, Huiran Zhang.</li>
+                            <li>Authors: <b>Siyuan Li</b>, Xiangze Meng, Yijian Yang, Yiwen Xu, Yunfei Wang, Chenghu Qiu, Hanyi Jiang, Pin Wu, Shengbo Chen, Xiao Wei, Hao Wang, Lan Ni, Huiran Zhang.</li>
                         </ul>
                     </div>
                 </div>
@@ -393,7 +447,7 @@
                     </div>
                     <div class="content">
                         <ul>
-                            <li>Co-authors: Yuhang Guo, Siyuan Li (Co-first author), Jinxuan Wu</li>
+                            <li>Authors: Yuhang Guo, <b>Siyuan Li</b>, Jinxuan Wu</li>
                         </ul>
                     </div>
                 </div>
@@ -446,7 +500,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Siyuan Li. All rights reserved. Original content available in the <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank">website repository</a>.</p>
+            <p>&copy; 2026 Siyuan Li. All rights reserved. Original content available in the <a href="https://github.com/liaoyanqing666/liaoyanqing666.github.io" target="_blank">website repository</a>.</p>
             <p>Check out a game I wrote: <a href="game.html">Click the Ball Game 🎮</a>.</p>
         </div>
     </footer>
