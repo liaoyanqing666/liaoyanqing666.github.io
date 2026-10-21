@@ -411,6 +411,7 @@ header {
 .intro img {
     width: auto;
     height: 20px;
+    vertical-align: middle;
 }
 
 /* Content sections --------------------------------------------------- */
@@ -561,9 +562,83 @@ main h2::after {
     border-top: 1px solid var(--border);
 }
 
+.publication-note {
+    margin: -12px 0 18px;
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+}
+
+.paper-authors summary,
+.earlier-projects > summary {
+    width: fit-content;
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.paper-authors summary::marker,
+.earlier-projects > summary::marker {
+    color: var(--primary);
+}
+
+.paper-authors summary:focus-visible,
+.earlier-projects > summary:focus-visible,
+.lab-affiliation > summary:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 5px;
+    border-radius: 3px;
+}
+
+.paper-authors p,
+.paper-overview {
+    margin-top: 10px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.7;
+}
+
+.paper-overview strong,
+.paper-status {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.paper-authors sup {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.earlier-projects > summary {
+    width: auto;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+}
+
+.earlier-projects-content {
+    margin-top: 12px;
+}
+
+.responsibility-group + .responsibility-group {
+    margin-top: 14px;
+}
+
+.responsibility-group h4 {
+    margin-bottom: 6px;
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
 .details,
 .details-with-logo {
     min-width: 0;
+}
+
+.details-with-logo {
+    --experience-logo-size: 42px;
 }
 
 .details h3,
@@ -576,6 +651,42 @@ main h2::after {
     font-weight: 700;
     letter-spacing: -0.016em;
     line-height: 1.43;
+}
+
+.details-with-logo .experience-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.details-with-logo h3 {
+    align-items: center;
+}
+
+.lab-affiliation > summary {
+    display: block;
+    list-style: none;
+    cursor: pointer;
+}
+
+.lab-affiliation > summary::-webkit-details-marker {
+    display: none;
+}
+
+.lab-name {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.lab-name::after {
+    display: inline-block;
+    margin-left: 0.35em;
+    font-size: 0.65em;
+    content: '\25B8';
+}
+
+.lab-affiliation[open] .lab-name::after {
+    transform: rotate(90deg);
 }
 
 .details p,
@@ -592,8 +703,8 @@ main h2::after {
 
 .logo {
     flex: 0 0 auto;
-    width: 42px;
-    height: 42px;
+    width: var(--experience-logo-size, 42px);
+    height: var(--experience-logo-size, 42px);
     margin-right: 11px;
     padding: 4px;
     border: 1px solid var(--border);
@@ -978,6 +1089,10 @@ footer a {
         width: 44px;
         height: 44px;
         margin-right: 11px;
+    }
+
+    .details-with-logo {
+        --experience-logo-size: 44px;
     }
 }
 
