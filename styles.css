@@ -672,20 +672,22 @@ main h2::after {
     display: none;
 }
 
-.lab-name {
-    color: var(--primary);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+.lab-full-name {
+    display: none;
 }
 
-.lab-name::after {
+.lab-affiliation[open] .lab-full-name {
+    display: inline;
+}
+
+.lab-affiliation .experience-title::after {
     display: inline-block;
     margin-left: 0.35em;
     font-size: 0.65em;
     content: '\25B8';
 }
 
-.lab-affiliation[open] .lab-name::after {
+.lab-affiliation[open] .experience-title::after {
     transform: rotate(90deg);
 }
 

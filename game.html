@@ -12,7 +12,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f9f9f9;
             color: #333;
@@ -27,6 +27,7 @@
         }
         #gameContainer {
             position: relative;
+            flex-shrink: 0;
             width: 90%;
             max-width: 1000px;
             height: 600px;
@@ -181,6 +182,7 @@
         let ballSize = 30;
         let ballColor = "#ff6347";
         let highScore = 0;
+        let timerInterval;
 
         function checkCollision(x, y, size) {
             const balls = gameContainer.getElementsByClassName("ball");
@@ -195,17 +197,19 @@
         }
 
         function createBall() {
-            const ball = document.createElement("div");
-            ball.classList.add("ball");
             const maxX = gameContainer.clientWidth - ballSize;
             const maxY = gameContainer.clientHeight - ballSize;
-            
-            let randomX, randomY;
-            do {
-                randomX = Math.floor(Math.random() * maxX);
-                randomY = Math.floor(Math.random() * maxY);
-            } while (checkCollision(randomX, randomY, ballSize));
-            
+            const availablePositions = [];
+            for (let y = 0; y <= maxY; y += ballSize) {
+                for (let x = 0; x <= maxX; x += ballSize) {
+                    if (!checkCollision(x, y, ballSize)) availablePositions.push([x, y]);
+                }
+            }
+            if (availablePositions.length === 0) return false;
+
+            const [randomX, randomY] = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+            const ball = document.createElement("div");
+            ball.classList.add("ball");
             ball.style.width = ballSize + "px";
             ball.style.height = ballSize + "px";
             ball.style.backgroundColor = ballColor;
@@ -217,9 +221,10 @@
                 totalClicks++;
                 updateScore();
                 updateAccuracy();
-                createBall();
+                if (!createBall()) endGame();
             });
             gameContainer.appendChild(ball);
+            return true;
         }
 
         function updateScore() { scoreDisplay.textContent = score; }
@@ -229,16 +234,44 @@
 
         startButton.addEventListener("click", () => {
             if (!isGameStarted) {
+                for (const input of [sizeInput, countInput, colorInput]) input.setCustomValidity("");
+                const selectedSize = Number(sizeInput.value);
+                const selectedCount = Number(countInput.value);
+                if (!Number.isInteger(selectedSize) || selectedSize < 10 || selectedSize > 100) {
+                    sizeInput.setCustomValidity("Choose a whole-number ball size from 10 to 100.");
+                    sizeInput.reportValidity();
+                    return;
+                }
+                if (!Number.isInteger(selectedCount) || selectedCount < 1 || selectedCount > 10) {
+                    countInput.setCustomValidity("Choose a whole-number ball count from 1 to 10.");
+                    countInput.reportValidity();
+                    return;
+                }
+                if (!/^#[0-9a-f]{6}$/i.test(colorInput.value)) {
+                    colorInput.setCustomValidity("Choose a valid ball color.");
+                    colorInput.reportValidity();
+                    return;
+                }
+                const capacity = Math.floor(gameContainer.clientWidth / selectedSize) *
+                    Math.floor(gameContainer.clientHeight / selectedSize);
+                if (selectedCount > capacity) {
+                    countInput.setCustomValidity("The game area is too small for that size and number of balls.");
+                    countInput.reportValidity();
+                    return;
+                }
+
                 isGameStarted = true;
                 score = 0;
                 totalClicks = 0;
                 timeLeft = 30;
-                ballSize = parseInt(sizeInput.value);
+                updateScore();
+                updateAccuracy();
+                timerDisplay.textContent = timeLeft;
+                ballSize = selectedSize;
                 ballColor = colorInput.value;
-                ballCount = parseInt(countInput.value);
                 
                 gameContainer.innerHTML = "";
-                for (let i = 0; i < ballCount; i++) createBall();
+                for (let i = 0; i < selectedCount; i++) createBall();
                 
                 timerInterval = setInterval(updateTimer, 1000);
                 startButton.style.display = "none";
